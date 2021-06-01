@@ -1,7 +1,15 @@
 <template>
     <div>
-        <div v-for="entry in entries">
-            <form-component :mode="mode" v-bind:values="entry"></form-component>
+        <div class="container is-fluid">
+            <div class="columns is-multiline">
+                <template v-if="config && entries">
+                    <template v-for="entry in entries">
+                        <div class="column is-one-third">
+                            <form-component :config="config" v-bind:values="entry"></form-component>
+                        </div>
+                    </template>
+                </template>
+            </div>
         </div>
     </div>
 </template>

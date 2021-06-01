@@ -7,10 +7,16 @@
     </header>
     <div class="card-content">
         <div class="content">
-            test
+            <template v-if="config">
+                <template v-for="configElement in config.formConfig">
+                    <div class="block">
+                        <config-element-component :config="configElement" v-model="values[configElement.key]"></config-element-component>
+                    </div>
+                </template>
+            </template>
         </div>
     </div>
-    <pre>{{this.form}}</pre>
+    <!--<pre>{{this.form}}</pre>-->
     <footer class="card-footer">
         <a v-if="!isEditing" v-on:click="isEditing = !isEditing" class="card-footer-item">Edit</a>
         <a v-if="!isEditing" v-on:click="isEditing = !isEditing" class="card-footer-item">Delete</a>
@@ -22,12 +28,11 @@
 
 <script>
 
-import {FormEnum, setFormValues} from "../utilities/FormHelpers";
+import {setFormValues} from "../utilities/FormHelpers";
 
 export default {
     props: {
-      mode: {
-          type: FormEnum.TERM | FormEnum.TRANSLATION,
+      config: {
           required: true,
       },
       values: {
@@ -36,12 +41,12 @@ export default {
       }
     },
     watch: {
-      mode: {
-          handler(curr, _) {
-            this.config = FormEnum[curr];
-          },
-          immediate: true,
-      },
+        config: {
+            handler(curr, _) {
+                console.log(curr);
+            },
+            immediate: true,
+        },
       values: {
           handler(curr, _) {
               setFormValues(this.form,curr);
@@ -53,7 +58,6 @@ export default {
         return {
             isEditing: false,
             form: new Form(),
-            config: {},
         }
     },
 }

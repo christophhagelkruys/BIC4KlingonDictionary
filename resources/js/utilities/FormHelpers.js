@@ -9,42 +9,38 @@ export const FormTypes = Object.freeze( {
     DATE: 'date',
     OBJECT: 'object',
     ARRAY: 'array',
-
 })
 const BaseType = [
-    [
-        {
-            key: 'id',
-            type: FormTypes.NUMBER,
-        },
-        {
-            key: 'slug',
-            type: FormTypes.NUMBER,
-        },
-        {
-            key: 'name',
-            type: FormTypes.NUMBER,
-        },
-        {
-            key: 'description',
-            type: FormTypes.NUMBER,
-        },
-        {
-            key: 'created_at',
-            type: FormTypes.NUMBER,
-        },
-        {
-            key: 'updated_at',
-            type: FormTypes.NUMBER,
-        },
-
-    ],
+    /*{
+        key: 'id',
+        type: FormTypes.NUMBER,
+    },
+    {
+        key: 'slug',
+        type: FormTypes.TEXT,
+    },*/
+    {
+        key: 'name',
+        type: FormTypes.TEXT,
+    },
+    {
+        key: 'description',
+        type: FormTypes.TEXT,
+    },
+    /*{
+        key: 'created_at',
+        type: FormTypes.DATE,
+    },
+    {
+        key: 'updated_at',
+        type: FormTypes.DATE,
+    },*/
 ];
 const TermId = {
     key: 'term_id',
-    type: FormTypes.NUMBER,
+    type: FormTypes.TEXT,
 }
-const BaseParentType = [...BaseType,TermId ];
+const BaseParentType = [...BaseType, ];//TermId ];
 
 export const EnumConfig = {
     [FormEnum.TRANSLATION] : {
