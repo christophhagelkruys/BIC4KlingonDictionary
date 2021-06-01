@@ -5653,6 +5653,7 @@ fieldset[disabled] .select select:hover {
   display: block;
   font-size: 1rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .label:not(:last-child) {

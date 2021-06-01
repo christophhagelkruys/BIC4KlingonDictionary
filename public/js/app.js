@@ -1956,18 +1956,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ConfigElemtComponent",
@@ -20008,101 +19996,77 @@ var render = function() {
                     _vm._v(_vm._s(_vm.config.key))
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "container is-fluid" }, [
-                    _c(
-                      "div",
-                      { staticClass: "columns is-multiline" },
-                      [
-                        _vm._l(_vm.config.config, function(element) {
-                          return [
-                            _c(
-                              "div",
-                              { staticClass: "column is-half" },
-                              [
-                                _c("config-elemt-component", {
-                                  attrs: { config: element },
-                                  model: {
-                                    value: _vm.value[element.key],
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.value, element.key, $$v)
-                                    },
-                                    expression: "value[element.key]"
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          ]
-                        })
-                      ],
-                      2
-                    )
-                  ])
+                  _c(
+                    "div",
+                    { staticClass: "container is-fluid" },
+                    [
+                      _vm._l(_vm.config.config, function(element) {
+                        return [
+                          _c("config-elemt-component", {
+                            attrs: { config: element },
+                            model: {
+                              value: _vm.value[element.key],
+                              callback: function($$v) {
+                                _vm.$set(_vm.value, element.key, $$v)
+                              },
+                              expression: "value[element.key]"
+                            }
+                          })
+                        ]
+                      })
+                    ],
+                    2
+                  )
                 ])
               ]
             : _vm._e(),
           _vm._v(" "),
           _vm.config.type === _vm.type.ARRAY
             ? [
-                _c("div", { staticClass: "box" }, [
-                  _c("label", { staticClass: "label" }, [
-                    _vm._v(_vm._s(_vm.config.key))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "container" }, [
-                    _c(
-                      "div",
-                      { staticClass: "columns is-full" },
-                      [
-                        _vm._l(_vm.value, function(element) {
-                          return [
-                            _c("div", { staticClass: "box" }, [
-                              _c("div", { staticClass: "container is-fluid" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "columns is-multiline" },
-                                  [
-                                    _vm._l(_vm.config.config, function(
-                                      configElement
-                                    ) {
-                                      return [
-                                        _c(
-                                          "div",
-                                          { staticClass: "column is-half" },
-                                          [
-                                            _c("config-elemt-component", {
-                                              attrs: { config: configElement },
-                                              model: {
-                                                value:
-                                                  element[configElement.key],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    element,
-                                                    configElement.key,
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "element[configElement.key]"
-                                              }
-                                            })
-                                          ],
-                                          1
+                _c(
+                  "div",
+                  { staticClass: "box" },
+                  [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v(_vm._s(_vm.config.key))
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.value, function(element) {
+                      return [
+                        _c("div", { staticClass: "box" }, [
+                          _c(
+                            "div",
+                            { staticClass: "container is-fluid" },
+                            [
+                              _vm._l(_vm.config.config, function(
+                                configElement
+                              ) {
+                                return [
+                                  _c("config-elemt-component", {
+                                    attrs: { config: configElement },
+                                    model: {
+                                      value: element[configElement.key],
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          element,
+                                          configElement.key,
+                                          $$v
                                         )
-                                      ]
-                                    })
-                                  ],
-                                  2
-                                )
-                              ])
-                            ])
-                          ]
-                        })
-                      ],
-                      2
-                    )
-                  ])
-                ])
+                                      },
+                                      expression: "element[configElement.key]"
+                                    }
+                                  })
+                                ]
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ]
+                    })
+                  ],
+                  2
+                )
               ]
             : _vm._e()
         ],
@@ -20133,7 +20097,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _vm._m(0),
+    _c("header", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "card-header-title is-centered" }, [
+        _vm._v(
+          "\n            " +
+            _vm._s(_vm.values[_vm.config.formConfig[0].key]) +
+            "\n        "
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-content" }, [
       _c(
@@ -20233,18 +20205,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "card-header" }, [
-      _c("p", { staticClass: "card-header-title is-centered" }, [
-        _vm._v("\n            Card Header\n        ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

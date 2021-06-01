@@ -2,7 +2,7 @@
 <div class="card">
     <header class="card-header">
         <p class="card-header-title is-centered">
-            Card Header
+            {{values[config.formConfig[0].key]}}
         </p>
     </header>
     <div class="card-content">

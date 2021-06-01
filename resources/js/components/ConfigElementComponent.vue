@@ -22,36 +22,24 @@
             <div class="box">
                 <label class="label">{{config.key}}</label>
                 <div class="container is-fluid">
-                    <div class="columns is-multiline">
                         <template v-for="element in config.config">
-                            <div class="column is-half">
                                 <config-elemt-component :config="element" v-model="value[element.key]"></config-elemt-component>
-                            </div>
                         </template>
-                    </div>
                 </div>
             </div>
         </template>
         <template v-if="config.type === type.ARRAY">
             <div class="box">
                 <label class="label">{{config.key}}</label>
-                <div class="container">
-                    <div class="columns is-full">
-                        <template v-for="element in value">
-                            <div class="box">
-                                <div class="container is-fluid">
-                                    <div class="columns is-multiline">
-                                        <template v-for="configElement in config.config">
-                                            <div class="column is-half">
-                                                <config-elemt-component :config="configElement" v-model="element[configElement.key]"></config-elemt-component>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                            </div>
-                        </template>
+                <template v-for="element in value">
+                    <div class="box">
+                        <div class="container is-fluid">
+                                <template v-for="configElement in config.config">
+                                        <config-elemt-component :config="configElement" v-model="element[configElement.key]"></config-elemt-component>
+                                </template>
+                        </div>
                     </div>
-                </div>
+                </template>
             </div>
         </template>
     </div>
