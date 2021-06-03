@@ -2,7 +2,7 @@
 <div class="card">
     <header class="card-header">
         <p class="card-header-title is-centered">
-            {{values[config.formConfig[0].key]}}
+            {{capitalize(values[config.formConfig[0].key])}}
         </p>
     </header>
     <div class="card-content">
@@ -46,7 +46,7 @@
 
 <script>
 
-import {FormEnum, TermBase} from "../utilities/FormHelpers";
+import {capitalize, FormEnum, TermBase} from "../utilities/FormHelpers";
 
 export default {
     props: {
@@ -83,7 +83,11 @@ export default {
             this.form.originalData.term_id = term.id;
             this.isActive = false;
             this.selectedTerm = term;
+        },
+        capitalize(s){
+            return capitalize(s);
         }
+
     },
     data:  () => {
         return {

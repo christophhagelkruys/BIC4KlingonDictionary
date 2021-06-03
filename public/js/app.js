@@ -1979,6 +1979,11 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true
     }
   },
+  methods: {
+    capitalize: function capitalize(s) {
+      return Object(_utilities_FormHelpers__WEBPACK_IMPORTED_MODULE_0__["capitalize"])(s);
+    }
+  },
   data: function data() {
     return {
       type: _utilities_FormHelpers__WEBPACK_IMPORTED_MODULE_0__["FormTypes"],
@@ -2060,6 +2065,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     value: {
       required: true
+    }
+  },
+  methods: {
+    capitalize: function capitalize(s) {
+      return Object(_utilities_FormHelpers__WEBPACK_IMPORTED_MODULE_0__["capitalize"])(s);
     }
   },
   data: function data() {
@@ -2202,6 +2212,9 @@ __webpack_require__.r(__webpack_exports__);
       this.form.originalData.term_id = term.id;
       this.isActive = false;
       this.selectedTerm = term;
+    },
+    capitalize: function capitalize(s) {
+      return Object(_utilities_FormHelpers__WEBPACK_IMPORTED_MODULE_0__["capitalize"])(s);
     }
   },
   data: function data() {
@@ -20152,7 +20165,7 @@ var render = function() {
           _vm.config.type === _vm.type.TEXT
             ? [
                 _c("label", { staticClass: "label" }, [
-                  _vm._v(_vm._s(_vm.config.key) + " ")
+                  _vm._v(_vm._s(_vm.capitalize(_vm.config.key)) + " ")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
@@ -20184,7 +20197,7 @@ var render = function() {
           _vm.config.type === _vm.type.DATE
             ? [
                 _c("label", { staticClass: "label" }, [
-                  _vm._v(_vm._s(_vm.config.key))
+                  _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
@@ -20216,7 +20229,7 @@ var render = function() {
           _vm.config.type === _vm.type.NUMBER
             ? [
                 _c("label", { staticClass: "label" }, [
-                  _vm._v(_vm._s(_vm.config.key))
+                  _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
@@ -20249,7 +20262,7 @@ var render = function() {
             ? [
                 _c("div", { staticClass: "box" }, [
                   _c("label", { staticClass: "label" }, [
-                    _vm._v(_vm._s(_vm.config.key))
+                    _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -20280,7 +20293,7 @@ var render = function() {
                   { staticClass: "box" },
                   [
                     _c("label", { staticClass: "label" }, [
-                      _vm._v(_vm._s(_vm.config.key))
+                      _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                     ]),
                     _vm._v(" "),
                     _vm._l(_vm.value, function(element) {
@@ -20347,7 +20360,7 @@ var render = function() {
           _vm.config.type === _vm.type.TEXT
             ? [
                 _c("label", { staticClass: "label" }, [
-                  _vm._v(_vm._s(_vm.config.key) + " ")
+                  _vm._v(_vm._s(_vm.capitalize(_vm.config.key)) + " ")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
@@ -20379,7 +20392,7 @@ var render = function() {
           _vm.config.type === _vm.type.DATE
             ? [
                 _c("label", { staticClass: "label" }, [
-                  _vm._v(_vm._s(_vm.config.key))
+                  _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
@@ -20411,7 +20424,7 @@ var render = function() {
           _vm.config.type === _vm.type.NUMBER
             ? [
                 _c("label", { staticClass: "label" }, [
-                  _vm._v(_vm._s(_vm.config.key))
+                  _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
@@ -20444,7 +20457,7 @@ var render = function() {
             ? [
                 _c("div", { staticClass: "box" }, [
                   _c("label", { staticClass: "label" }, [
-                    _vm._v(_vm._s(_vm.config.key))
+                    _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -20479,7 +20492,7 @@ var render = function() {
                   { staticClass: "box" },
                   [
                     _c("label", { staticClass: "label" }, [
-                      _vm._v(_vm._s(_vm.config.key))
+                      _vm._v(_vm._s(_vm.capitalize(_vm.config.key)))
                     ]),
                     _vm._v(" "),
                     _vm._l(_vm.value, function(element) {
@@ -20594,7 +20607,7 @@ var render = function() {
       _c("p", { staticClass: "card-header-title is-centered" }, [
         _vm._v(
           "\n            " +
-            _vm._s(_vm.values[_vm.config.formConfig[0].key]) +
+            _vm._s(_vm.capitalize(_vm.values[_vm.config.formConfig[0].key])) +
             "\n        "
         )
       ])
@@ -33909,6 +33922,7 @@ var Form = /*#__PURE__*/function () {
 
       this.submitting = true;
       return new Promise(function (resolve, reject) {
+        console.log(_this.data());
         axios[requestType](url, _this.data()).then(function (response) {
           _this.onSuccess(response.data);
 
@@ -33981,13 +33995,14 @@ var Form = /*#__PURE__*/function () {
 /*!***********************************************!*\
   !*** ./resources/js/utilities/FormHelpers.js ***!
   \***********************************************/
-/*! exports provided: FormEnum, FormTypes, TermBase, EnumConfig, setFormValues */
+/*! exports provided: FormEnum, FormTypes, capitalize, TermBase, EnumConfig, setFormValues */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormEnum", function() { return FormEnum; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormTypes", function() { return FormTypes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "capitalize", function() { return capitalize; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TermBase", function() { return TermBase; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnumConfig", function() { return EnumConfig; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFormValues", function() { return setFormValues; });
@@ -34062,6 +34077,10 @@ var TranslationBase = {
   baseUrl: '/translation',
   noReset: ['name', 'description', 'term_id'],
   formConfig: BaseParentType
+};
+var capitalize = function capitalize(s) {
+  if (typeof s !== 'string') return '';
+  return s.charAt(0).toUpperCase() + s.slice(1);
 };
 var TermBase = {
   listUrl: '/list/term',

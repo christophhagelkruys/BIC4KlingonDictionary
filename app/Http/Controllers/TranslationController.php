@@ -73,7 +73,7 @@ class TranslationController extends Controller
      */
     public function edit(Translation $translation)
     {
-        return view('translation.edit', compact($translation));
+        return view('translation.edit', compact('translation'));
     }
 
     /**
