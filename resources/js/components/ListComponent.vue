@@ -5,7 +5,7 @@
                 <template v-if="config && entries">
                     <template v-for="entry in entries">
                         <div class="column is-one-third">
-                            <form-readonly-component :config="config" v-bind:values="entry"></form-readonly-component>
+                            <form-readonly-component :config="config" v-bind:values="entry" v-on:delete="deleteAndReload"></form-readonly-component>
                         </div>
                     </template>
                 </template>
@@ -35,6 +35,18 @@ export default {
             immediate: true,
         }
     },
+    methods: {
+        load(){
+            axios.get(this.config.listUrl).then( (response) => {
+                this.entries = response.data;
+            });
+        },
+        deleteAndReload(slug){
+            axios.delete(`${this.config.baseUrl}/${slug}`).then( () => {
+                this.load();
+            });
+        }
+    },
     data:  () => {
         return {
             entries: [],
@@ -42,9 +54,7 @@ export default {
         }
     },
     created() {
-      axios.get(this.config.listUrl).then( (response) => {
-          this.entries = response.data;
-      });
+        this.load();
     }
 }
 </script>

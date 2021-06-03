@@ -18,6 +18,7 @@
     </div>
     <footer class="card-footer">
         <a v-on:click="openEditView" class="card-footer-item">Edit</a>
+        <a v-on:click="deleteObject(form.originalData['slug'])" class="card-footer-item">Delete</a>
     </footer>
 </div>
 </template>
@@ -45,6 +46,9 @@ export default {
     methods: {
         openEditView(){
             window.open(`${this.config.baseUrl}/${this.form.originalData['slug']}/edit`);
+        },
+        deleteObject(slug){
+            this.$emit('delete',slug);
         }
     },
     data:  () => {

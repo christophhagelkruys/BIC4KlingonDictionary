@@ -86,8 +86,7 @@ export default {
         },
         capitalize(s){
             return capitalize(s);
-        }
-
+        },
     },
     data:  () => {
         return {

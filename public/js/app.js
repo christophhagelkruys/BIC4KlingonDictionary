@@ -2318,6 +2318,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     config: {
@@ -2339,6 +2340,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     openEditView: function openEditView() {
       window.open("".concat(this.config.baseUrl, "/").concat(this.form.originalData['slug'], "/edit"));
+    },
+    deleteObject: function deleteObject(slug) {
+      this.$emit('delete', slug);
     }
   },
   data: function data() {
@@ -2402,6 +2406,22 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true
     }
   },
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      axios.get(this.config.listUrl).then(function (response) {
+        _this.entries = response.data;
+      });
+    },
+    deleteAndReload: function deleteAndReload(slug) {
+      var _this2 = this;
+
+      axios["delete"]("".concat(this.config.baseUrl, "/").concat(slug)).then(function () {
+        _this2.load();
+      });
+    }
+  },
   data: function data() {
     return {
       entries: [],
@@ -2409,11 +2429,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios.get(this.config.listUrl).then(function (response) {
-      _this.entries = response.data;
-    });
+    this.load();
   }
 });
 
@@ -20856,6 +20872,19 @@ var render = function() {
         "a",
         { staticClass: "card-footer-item", on: { click: _vm.openEditView } },
         [_vm._v("Edit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "card-footer-item",
+          on: {
+            click: function($event) {
+              return _vm.deleteObject(_vm.form.originalData["slug"])
+            }
+          }
+        },
+        [_vm._v("Delete")]
       )
     ])
   ])
@@ -20897,7 +20926,8 @@ var render = function() {
                       { staticClass: "column is-one-third" },
                       [
                         _c("form-readonly-component", {
-                          attrs: { config: _vm.config, values: entry }
+                          attrs: { config: _vm.config, values: entry },
+                          on: { delete: _vm.deleteAndReload }
                         })
                       ],
                       1
