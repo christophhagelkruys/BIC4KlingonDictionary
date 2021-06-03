@@ -2,7 +2,7 @@
 <div class="card">
     <header class="card-header">
         <p class="card-header-title is-centered">
-            {{values[config.formConfig[0].key]}}
+            {{form.originalData[config.formConfig[0].key]}}
         </p>
     </header>
     <div class="card-content">
@@ -10,25 +10,19 @@
             <template v-if="config">
                 <template v-for="configElement in config.formConfig">
                     <div class="block">
-                        <config-element-component :config="configElement" v-model="values[configElement.key]"></config-element-component>
+                        <config-element-readonly-component :config="configElement" :value="form.originalData[configElement.key]"></config-element-readonly-component>
                     </div>
                 </template>
             </template>
         </div>
     </div>
-    <!--<pre>{{this.form}}</pre>-->
     <footer class="card-footer">
-        <a v-if="!isEditing" v-on:click="isEditing = !isEditing" class="card-footer-item">Edit</a>
-        <a v-if="!isEditing" v-on:click="isEditing = !isEditing" class="card-footer-item">Delete</a>
-        <a v-if="isEditing" v-on:click="isEditing = !isEditing" class="card-footer-item">Save</a>
-        <a v-if="isEditing" v-on:click="isEditing = !isEditing" class="card-footer-item">Cancel</a>
+        <a v-on:click="openEditView" class="card-footer-item">Edit</a>
     </footer>
 </div>
 </template>
 
 <script>
-
-import {setFormValues} from "../utilities/FormHelpers";
 
 export default {
     props: {
@@ -38,26 +32,26 @@ export default {
       values: {
           type: Object,
           required: true,
-      }
+      },
     },
     watch: {
-        config: {
-            handler(curr, _) {
-                console.log(curr);
-            },
-            immediate: true,
-        },
       values: {
           handler(curr, _) {
-              setFormValues(this.form,curr);
+              this.form = new Form(curr);
           },
           immediate: true,
       },
+    },
+    methods: {
+        openEditView(){
+            window.open(`${this.config.baseUrl}/${this.form.originalData['slug']}/edit`);
+        }
     },
     data:  () => {
         return {
             isEditing: false,
             form: new Form(),
+            terms: [],
         }
     },
 }

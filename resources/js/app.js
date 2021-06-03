@@ -22,9 +22,12 @@ window.Vue = vue;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('query-message', require('./components/base/QueryMessage.vue').default);
-Vue.component('form-component', require('./components/DisplayOnlyComponent').default);
+Vue.component('form-component', require('./components/FormComponent').default);
+Vue.component('form-readonly-component', require('./components/FormReadonlyComponent').default);
 Vue.component('list-component', require('./components/ListComponent').default);
 Vue.component('config-element-component', require('./components/ConfigElementComponent').default)
+Vue.component('form-config-component',require('./components/FormConfigComponent').default)
+Vue.component('config-element-readonly-component',require('./components/ConfigElementReadonlyComponent').default)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

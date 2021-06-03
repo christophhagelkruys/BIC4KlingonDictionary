@@ -4,7 +4,7 @@
 @section('content')
     <section class="section">
         <div class="container">
-            <h1>Create term</h1>
+            <form-config-component mode="TermCreate" :values="{}"></form-config-component>
         </div>
     </section>
 @endsection

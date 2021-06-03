@@ -5,7 +5,7 @@
                 <template v-if="config && entries">
                     <template v-for="entry in entries">
                         <div class="column is-one-third">
-                            <form-component :config="config" v-bind:values="entry"></form-component>
+                            <form-readonly-component :config="config" v-bind:values="entry"></form-readonly-component>
                         </div>
                     </template>
                 </template>
@@ -16,10 +16,11 @@
 
 <script>
 import {EnumConfig, FormEnum} from "../utilities/FormHelpers";
-import DisplayOnlyComponent from "./DisplayOnlyComponent";
+import FormComponent from "./FormComponent";
+import FormReadonlyComponent from "./FormReadonlyComponent";
 
 export default {
-    components: {DisplayOnlyComponent},
+    components: {FormReadonlyComponent, FormComponent},
     props: {
         mode: {
             type: FormEnum.TERM | FormEnum.TRANSLATION,

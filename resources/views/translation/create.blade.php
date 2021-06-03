@@ -4,7 +4,7 @@
 @section('content')
     <section class="section">
         <div class="container">
-            <h1>Create translation</h1>
+            <form-config-component mode="TranslationCreate" :values="{}"></form-config-component>
         </div>
     </section>
 @endsection

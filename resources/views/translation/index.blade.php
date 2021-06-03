@@ -4,7 +4,7 @@
 @section('content')
     <section class="section">
         <div class="container">
-            <list-component mode="Term">HALLO</list-component>
+            <list-component mode="Translation"></list-component>
         </div>
     </section>
 @endsection

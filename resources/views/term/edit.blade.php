@@ -4,7 +4,7 @@
 @section('content')
     <section class="section">
         <div class="container">
-            <h1>Edit term</h1>
+            <form-config-component mode="TermEdit" :values="{{ $term }}" readonly="false"></form-config-component>
         </div>
     </section>
 @endsection
