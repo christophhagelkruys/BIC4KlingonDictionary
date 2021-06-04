@@ -2384,9 +2384,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
+var form = new Form({
+  q: '',
+  noReset: ['q']
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     FormReadonlyComponent: _FormReadonlyComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -2394,7 +2420,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     mode: {
-      type: _utilities_FormHelpers__WEBPACK_IMPORTED_MODULE_0__["FormEnum"].TERM | _utilities_FormHelpers__WEBPACK_IMPORTED_MODULE_0__["FormEnum"].TRANSLATION,
+      type: String,
       required: true
     }
   },
@@ -2406,12 +2432,22 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true
     }
   },
+  computed: {
+    isLoading: function isLoading() {
+      return this.loading;
+    }
+  },
   methods: {
     load: function load() {
       var _this = this;
 
+      this.loading = true;
       axios.get(this.config.listUrl).then(function (response) {
         _this.entries = response.data;
+        _this.loading = false;
+      })["catch"](function (err) {
+        console.log(err);
+        _this.loading = false;
       });
     },
     deleteAndReload: function deleteAndReload(slug) {
@@ -2420,12 +2456,25 @@ __webpack_require__.r(__webpack_exports__);
       axios["delete"]("".concat(this.config.baseUrl, "/").concat(slug)).then(function () {
         _this2.load();
       });
+    },
+    submit: function submit() {
+      var _this3 = this;
+
+      this.loading = true;
+      this.form.post(this.config.searchUrl).then(function (response) {
+        _this3.entries = response;
+        _this3.loading = false;
+      });
     }
   },
   data: function data() {
     return {
       entries: [],
-      config: {}
+      config: {},
+      query: '',
+      loading: true,
+      form: form,
+      type: _utilities_FormHelpers__WEBPACK_IMPORTED_MODULE_0__["FormEnum"]
     };
   },
   created: function created() {
@@ -20911,36 +20960,105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "container is-fluid" }, [
-      _c(
-        "div",
-        { staticClass: "columns is-multiline" },
-        [
-          _vm.config && _vm.entries
-            ? [
-                _vm._l(_vm.entries, function(entry) {
-                  return [
+  return _c(
+    "div",
+    [
+      _vm.mode === _vm.type.TRANSLATION_SEARCH && _vm.config
+        ? [
+            _c("div", { staticClass: "container" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "column",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.submit($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "field" }, [
                     _c(
-                      "div",
-                      { staticClass: "column is-one-third" },
-                      [
-                        _c("form-readonly-component", {
-                          attrs: { config: _vm.config, values: entry },
-                          on: { delete: _vm.deleteAndReload }
-                        })
-                      ],
-                      1
+                      "label",
+                      { staticClass: "label", attrs: { for: "title" } },
+                      [_vm._v("Search")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.q,
+                            expression: "form.q"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          id: "title",
+                          name: "query",
+                          type: "text",
+                          autofocus: ""
+                        },
+                        domProps: { value: _vm.form.q },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "q", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("button", { staticClass: "button is-primary" }, [
+                    _vm._v(
+                      "\n                    Search " +
+                        _vm._s(_vm.config.name) +
+                        "\n                "
                     )
-                  ]
-                })
-              ]
-            : _vm._e()
-        ],
-        2
-      )
-    ])
-  ])
+                  ])
+                ]
+              )
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "container is-fluid" }, [
+        _c(
+          "div",
+          { staticClass: "columns is-multiline" },
+          [
+            _vm.config && _vm.entries && !_vm.isLoading
+              ? [
+                  _vm._l(_vm.entries, function(entry) {
+                    return [
+                      _c(
+                        "div",
+                        { staticClass: "column is-one-third" },
+                        [
+                          _c("form-readonly-component", {
+                            attrs: { config: _vm.config, values: entry },
+                            on: { delete: _vm.deleteAndReload }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  })
+                ]
+              : _vm._e()
+          ],
+          2
+        )
+      ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33952,7 +34070,6 @@ var Form = /*#__PURE__*/function () {
 
       this.submitting = true;
       return new Promise(function (resolve, reject) {
-        console.log(_this.data());
         axios[requestType](url, _this.data()).then(function (response) {
           _this.onSuccess(response.data);
 
@@ -34060,6 +34177,7 @@ var FormEnum = Object.freeze({
   TRANSLATION: 'Translation',
   TRANSLATION_CREATE: 'TranslationCreate',
   TRANSLATION_EDIT: 'TranslationEdit',
+  TRANSLATION_SEARCH: 'TranslationSearch',
   TERM: 'Term',
   TERM_CREATE: 'TermCreate',
   TERM_EDIT: 'TermEdit'
@@ -34104,6 +34222,8 @@ var BaseParentType = [].concat(BaseType); //TermId ];
 
 var TranslationBase = {
   listUrl: '/list/translation',
+  searchUrl: '/search/translation',
+  name: 'Translation',
   baseUrl: '/translation',
   noReset: ['name', 'description', 'term_id'],
   formConfig: BaseParentType
@@ -34119,6 +34239,12 @@ var TermBase = {
   formConfig: BaseType
 };
 var EnumConfig = (_EnumConfig = {}, _defineProperty(_EnumConfig, FormEnum.TRANSLATION_CREATE, TranslationBase), _defineProperty(_EnumConfig, FormEnum.TRANSLATION_EDIT, TranslationBase), _defineProperty(_EnumConfig, FormEnum.TRANSLATION, _objectSpread(_objectSpread({}, TranslationBase), {}, {
+  formConfig: [].concat(_toConsumableArray(TranslationBase.formConfig), [{
+    key: 'term',
+    type: FormTypes.OBJECT,
+    config: BaseType
+  }])
+})), _defineProperty(_EnumConfig, FormEnum.TRANSLATION_SEARCH, _objectSpread(_objectSpread({}, TranslationBase), {}, {
   formConfig: [].concat(_toConsumableArray(TranslationBase.formConfig), [{
     key: 'term',
     type: FormTypes.OBJECT,

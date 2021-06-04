@@ -2,6 +2,7 @@ export const FormEnum = Object.freeze({
     TRANSLATION: 'Translation',
     TRANSLATION_CREATE: 'TranslationCreate',
     TRANSLATION_EDIT: 'TranslationEdit',
+    TRANSLATION_SEARCH: 'TranslationSearch',
     TERM: 'Term',
     TERM_CREATE: 'TermCreate',
     TERM_EDIT: 'TermEdit',
@@ -48,6 +49,8 @@ const BaseParentType = [...BaseType ];//TermId ];
 
 const TranslationBase = {
     listUrl: '/list/translation',
+    searchUrl: '/search/translation',
+    name: 'Translation',
     baseUrl: '/translation',
     noReset: ['name','description','term_id'],
     formConfig: BaseParentType
@@ -66,6 +69,11 @@ export const EnumConfig = {
     [FormEnum.TRANSLATION_CREATE] : TranslationBase,
     [FormEnum.TRANSLATION_EDIT] : TranslationBase,
     [FormEnum.TRANSLATION] : { ...TranslationBase, formConfig: [...TranslationBase.formConfig, {
+            key: 'term',
+            type: FormTypes.OBJECT,
+            config: BaseType
+        } ]},
+    [FormEnum.TRANSLATION_SEARCH] : { ...TranslationBase, formConfig: [...TranslationBase.formConfig, {
             key: 'term',
             type: FormTypes.OBJECT,
             config: BaseType
