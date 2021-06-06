@@ -20671,9 +20671,9 @@ var render = function() {
     _c("header", { staticClass: "card-header" }, [
       _c("p", { staticClass: "card-header-title is-centered" }, [
         _vm._v(
-          "\n            " +
+          "\r\n            " +
             _vm._s(_vm.capitalize(_vm.values[_vm.config.formConfig[0].key])) +
-            "\n        "
+            "\r\n        "
         )
       ])
     ]),
@@ -20878,9 +20878,9 @@ var render = function() {
     _c("header", { staticClass: "card-header" }, [
       _c("p", { staticClass: "card-header-title is-centered" }, [
         _vm._v(
-          "\n            " +
+          "\r\n            " +
             _vm._s(_vm.form.originalData[_vm.config.formConfig[0].key]) +
-            "\n        "
+            "\r\n        "
         )
       ])
     ]),
@@ -34285,8 +34285,8 @@ function setFormValues(form, data) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/developer/PhpstormProjects/BIC4KlingonDictionary/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/developer/PhpstormProjects/BIC4KlingonDictionary/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\bruno\PhpstormProjects\BIC4KlingonDictionary\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\bruno\PhpstormProjects\BIC4KlingonDictionary\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -142,7 +142,7 @@
 
     <footer class="footer">
         <div class="content has-text-centered">
-            <small>Here comes some footer</small>
+            <small>Klingon project by group Hagelkruys, Kröppl, Kajusic</small>
         </div>
     </footer>
 </div>
